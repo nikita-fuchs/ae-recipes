@@ -120,13 +120,11 @@ First we clean up the code to make sure escapes and comments are gone - all this
 let formattedCode = code;
 
 // replace " => \"
-    formattedCode = formattedCode.replace(new RegExp('"', 'g'), '\"');
+    sourceCode = sourceCode.replace(new RegExp('"', 'g'), '\"');
           
-
-
 // remove comments
-    formattedCode = formattedCode.replace(new RegExp('\\/\\/.*', 'g'), '');
-    formattedCode = formattedCode.replace(new RegExp('\\/\\*.*[\s\S]*\\*\\/', 'g'), '');
+    sourceCode = sourceCode.replace(new RegExp('\\/\\/.*', 'g'), '');
+    sourceCode = sourceCode.replace(new RegExp('\\/\\*.*[\s\S]*\\*\\/', 'g'), '');
 ```
 
 # Call a function 
