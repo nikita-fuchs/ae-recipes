@@ -125,6 +125,36 @@ let formattedCode = code;
 // remove comments
     sourceCode = sourceCode.replace(new RegExp('\\/\\/.*', 'g'), '');
     sourceCode = sourceCode.replace(new RegExp('\\/\\*.*[\s\S]*\\*\\/', 'g'), '');
+    
+// create a contract instance
+    myContract = await Chain.getContractInstance(sourceCode);
+    
+// Deploy the contract
+    try {
+    console.log("Deploying contract....")
+    console.log("Using account for deployment: ", Chain.addresses());
+    
+    await myContract.methods.init( **YOUR_DEPLOYMENT_ARGS** );
+    // e.g.     await myContract.methods.init( 42,"some_string" );
+    } catch(e){
+    console.log(" Deployment failed: " + e, "error",  myContract.aci.name)
+        }
+    console.log("Contract deployed successfully!")
+    console.log("Contract address: ", myContract.deployInfo.address)
+    console.log("Transaction ID: ", myContract.deployInfo.transaction)
+    console.log("\n \n")
+    
 ```
 
 # Call a function 
+
+This is how you call a function of your smart contract. The SDK will automatically determine whether it just intends to read data from the contract / execute code locally, or actually perform a stateful function call, which means sending a transaction to the contract from the account you defined above. In the latter case the *transactionOptions*  are useful.
+```
+console.log("Calling your function " + **YOUR_FUNCTION_NAME**);
+        
+let callresult = await myContract.methods[**YOUR_FUNCTION_NAME**](...**YOUR_FUNCTION_PARAMS);
+// e.g. callresult = await myContract.methods.transfer("ak_1234...", 42)
+
+console.log("Transaction ID: ", callresult.hash);
+console.log("Function call returned: ", callresult.decodedResult);
+```
