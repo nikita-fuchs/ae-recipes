@@ -15,11 +15,12 @@ npm i @aeternity/aepp-sdk
 
 ### Options for operating systems:
 Note : If you experience errors during the installation, you might need to install build tools for your OS.
-**IAM_INSIDE_INSTALL_SDK**
+**DONT_FIND_ME**
 
 #### Windows
 Windows Build Tools
 ```
+**FIND_ME**
 npm install -g windows-build-tools
 ```
 
@@ -39,7 +40,7 @@ xcode-select --install
 
 # Configuration of the SDK
 
-Define an account you will use for transactions:
+Define an account you will use for transactions: 
 
 ```
 const acc1 = MemoryAccount({ keypair: { secretKey: 'bb9f0b01c8c9553cfbaf7ef81a50f977b1326801ebf7294d1c2cbccdedf27476e9bbf604e611b5460a3b3999e9771b6f60417d73ce7c5519e12f7e127a1225ca', publicKey: 'ak_2mwRmUeYmfuW93ti9HMSUJzCk1EYcQEfikVSzgo6k2VghsWhgU' } });
