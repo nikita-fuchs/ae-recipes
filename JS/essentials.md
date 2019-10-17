@@ -15,6 +15,7 @@ npm i @aeternity/aepp-sdk
 
 ### Options for operating systems:
 Note : If you experience errors during the installation, you might need to install build tools for your OS.
+**IAM_INSIDE_INSTALL_SDK**
 
 #### Windows
 Windows Build Tools
@@ -148,8 +149,15 @@ let formattedCode = code;
 
 # Call a function 
 
-This is how you call a function of your smart contract. The SDK will automatically determine whether it just intends to read data from the contract / execute code locally, or actually perform a stateful function call, which means sending a transaction to the contract from the account you defined above. In the latter case the *transactionOptions*  are useful.
+This is how you call a function of your smart contract. The SDK will automatically determine whether it just intends to read data from the contract / execute code locally, or actually perform a stateful function call, which means sending a transaction to the contract from the account you defined above. In the latter case the *transactionOptions*  are useful, although they are optional and will be set to defaults if not provided.
 ```
+transactionOptions = defaults: {
+        gasPrice: 1000000000, // min gasPrice 1e9
+        amount: 0, // amount of æ you want to pass with your transaction. Watch out: The function needs to be marked as payable in contract code
+        gas: 1600000 - 21000,
+        dryRunAccount: { pub: 'ak_11111111111111111111111111111111273Yts', amount: '100000000000000000000000000000000000' },
+      }
+
 console.log("Calling your function " + **YOUR_FUNCTION_NAME**);
         
 let callresult = await myContract.methods[**YOUR_FUNCTION_NAME**](...**YOUR_FUNCTION_PARAMS);
